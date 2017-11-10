@@ -1,70 +1,97 @@
 $(() => {
 
+  const $titleLine = $('<h1>').text('Partners in Climb');
+  const $gameContainer = $('<div>').attr('id', 'game-container');
+  $('body').append($titleLine, $gameContainer)
+  const $leftPanel = $('<div>').attr('id', 'left-panel');
+  const $rightPanel = $('<div>').attr('id', 'right-panel');
+  $gameContainer.append($leftPanel, $rightPanel);
   const $climber1 = $('<div>').attr('id', 'climber-1');
-  const $leftPanel = $('#left-panel');
   const $climber2 = $('<div>').attr('id', 'climber-2');
-  const $rightPanel = $('#right-panel');
   $leftPanel.append($climber1);
   $rightPanel.append($climber2);
+  // Positions climbers within panels
+  $climber1.css({'left': '140px', 'top': '390px'});
+  $climber2.css({'left': '440px', 'top': '390px'});
 
-  let Xpos = 0; //Sets starting position left/right
-  let Ypos = 0; //Sets starting position up/down
-  let spd = 0; //Milliseconds
-  let dstnc = 10; //Pixels
+  // Climber Stats
 
-  // Climber Movement
-  // Modify W/I controllers to account for gravity
-  // S/K may be unnecessary
-  $(document).keydown(function(e){
-    // Climber 1 Movement
-      if (e.keyCode == 87){ //W Up
-          $('#climber-1').animate({
-              top: -dstnc+Ypos+'px'
-          }, spd );
-          Ypos = Ypos-dstnc;
-      }
-      if (e.keyCode == 68){ //D Right
-          $('#climber-1').animate({
-              left: dstnc+Xpos+'px'
-          }, spd );
-          Xpos = Xpos+dstnc;
-      }
-      if (e.keyCode == 83){ //S Down
-          $('#climber-1').animate({
-              top: dstnc+Ypos+'px'
-          }, spd );
-          Ypos = Ypos+dstnc;
-      }
-      if (e.keyCode == 65){ //A Left
-          $('#climber-1').animate({
-              left: -dstnc+Xpos+'px'
-          }, spd );
-          Xpos = Xpos-dstnc;
-      }
-      // Climber 2 Movement
-      if (e.keyCode == 73){ //I Up
-          $('#climber-2').animate({
-              top: -dstnc+Ypos+'px'
-          }, spd );
-          Ypos = Ypos-dstnc;
-      }
-      if (e.keyCode == 76){ //L Right
-          $('#climber-2').animate({
-              left: dstnc+Xpos+'px'
-          }, spd );
-          Xpos = Xpos+dstnc;
-      }
-      if (e.keyCode == 75){ //K Down
-          $('#climber-2').animate({
-              top: dstnc+Ypos+'px'
-          }, spd );
-          Ypos = Ypos+dstnc;
-      }
-      if (e.keyCode == 74){ //J Left
-          $('#climber-2').animate({
-              left: -dstnc+Xpos+'px'
-          }, spd );
-          Xpos = Xpos-dstnc;
-      }
-    })
+  let c1Left = 0;
+  let c1Top = 0;
+  let c1Delay = 0;
+  let c1DstMvd = 10;
+  let c2Left = 0;
+  let c2Top = 0;
+  let c2Delay = 0;
+  let c2DstMvd = 10;
+
+  // Movement for both climbers
+  // For some reason, Climber 2 has has a delay on its movement.
+
+  $(document).keydown(function(event){
+
+    // Climber-1 Movement
+
+    // Bind W to Upward Movement
+    if (event.keyCode == 87) {
+      $('#climber-1').animate({'top': (c1Top - c1DstMvd) + 'px'}, c1Delay);
+      c1Top -= c1DstMvd;
+    }
+    // Bind D to Rightward Movement
+    if (event.keyCode == 68) {
+      $('#climber-1').animate({'left': (c1Left + c1DstMvd) + 'px'}, c1Delay);
+      c1Left += c1DstMvd;
+    }
+    // Bind S to Downward Movement
+    if (event.keyCode == 83) {
+      $('#climber-1').animate({'top': c1Top + c1DstMvd + 'px'}, c1Delay);
+      c1Top += c1DstMvd;
+    }
+    // Bind A to Leftward Movement
+    if (event.keyCode == 65) {
+      $('#climber-1').animate({'left': c1Left - c1DstMvd + 'px'}, c1Delay);
+      c1Left -= c1DstMvd
+    }
+
+    // Climber-2 Movement
+
+    // Bind I to Upward Movement
+    if (event.keyCode == 73) {
+      $('#climber-2').animate({'top': (c2Top - c2DstMvd) + 'px', c2Delay});
+      c2Top -= c2DstMvd;
+    }
+    // Bind L to Rightward Movement
+    if (event.keyCode == 76) {
+      $('#climber-2').animate({'left': c2Left + c2DstMvd + 'px', c2Delay});
+      c2Left += c2DstMvd;
+    }
+    // Bind K to Downward Movement
+    if (event.keyCode == 75) {
+      $('#climber-2').animate({'top': c2Top + c2DstMvd + 'px', c2Delay});
+      c2Top += c2DstMvd;
+    }
+    // Bind J to Leftward Movement
+    if (event.keyCode == 74) {
+      $('#climber-2').animate({'left': c2Left - c2DstMvd + 'px', c2Delay});
+      c2Left -= c2DstMvd;
+    }
+
+    // Logs the position of each climber on keydown.
+    console.log('Climber-1 Position: ', $('#climber-1').offset());
+    console.log('Climber-2 Position: ', $('#climber-2').offset());
+
+
+    // Send alert when positions are the same
+    if ($('#climber-1').offset() == $('.hazard').offset()) {
+      alert('Collision!');
+    }
+
+  });
+
+  // Creates hazard, inserts hazard to left panel
+  const $hazard = $('<div>').addClass('hazard');
+  $hazard.css({'height': '20px', 'width': '20px', 'background-color': 'black'});
+  $('#left-panel').append($hazard);
+
+
 });

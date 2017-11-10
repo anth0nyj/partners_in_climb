@@ -1,0 +1,26 @@
+Partner in Climb
+
+  Description
+  -On load, create two vertical panels with two player sprites and a serious of randomly generated platforms
+  -Player must control two different player sprites and leap onto platforms as they descend.
+  -Increment score with height.
+  -Increment speed of scroll with either height or score.
+  -If either sprite touches the bottom of the screen, player loses.
+
+  Challenges:
+  -Jump physics could be a nightmare.
+  -Collision detection would not be fun either.
+  -Getting platforms to appear shouldn't be too difficult. Getting appropriately sized platforms to appear could be horrendous.
+  -Inertia would be such a stretch.
+  -Building the first panel would likely be the hardest part. The second one should follow with relative ease.
+
+  Potential features:
+  -Binding movement to WASD/IJKL shouldn't be too difficult.
+    -Update: already found a way to do this.
+  -Pause screen would just be a modal.
+  -Start menu could also be a modal.
+  -Divs everywhere.
+  -For increased difficulty (to both the player and myself), one sprite could be controlled with WASD, while the other followed the cursor, and used either left or right click to jump.
+
+  Alternatives:
+  -If the jumping proves to be too difficult, I can make a vertically scrolling helicopter game instead. Again, once one panel is figured out, the second should be cake.
