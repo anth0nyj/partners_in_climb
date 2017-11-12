@@ -54,7 +54,7 @@ $(() => {
     }
 
     // Climber-2 Movement
-
+    // Note: Climber-2 moves slowly and slides for some reason. Investigage.
     // Bind I to Upward Movement
     if (event.keyCode == 73) {
       $('#climber-2').animate({'top': (c2Top - c2DstMvd) + 'px', c2Delay});
@@ -76,30 +76,32 @@ $(() => {
       c2Left -= c2DstMvd;
     }
 
-    // Logs the position of each climber on keydown.
-    // console.log('Climber-1 Position: ', $('#climber-1').offset());
-    // console.log('Climber-2 Position: ', $('#climber-2').offset());
+    // Collision Detection
 
+    // Position Tracking
     let $c1Place = $('#climber-1')[0].getBoundingClientRect();
     let $c2Place = $('#climber-2')[0].getBoundingClientRect();
     let $hazPlace = $('.hazard')[0].getBoundingClientRect();
+
+    // Logging Positions
     console.log($c1Place);
     console.log($hazPlace);
-    // Collision Detection?
 
+    // Climber-1 Collision
     if ($c1Place.x < $hazPlace.x + $hazPlace.width &&
    $c1Place.x + $c1Place.width > $hazPlace.x &&
    $c1Place.y < $hazPlace.y + $hazPlace.height &&
    $c1Place.height + $c1Place.y > $hazPlace.y) {
      alert('Game over!');
-    // collision detected!
-}
-    // if ($('#climber-1').css('left') < $('.hazard').css('left') + $('.hazard').css('width') &&
-    //     $('#climber-1').css('left') + $('#climber-1').css('width') > $('.hazard').css('left') &&
-    //     $('#climber-1').css('top') < $('.hazard').css('top') + $('.hazard').css('height') &&
-    //     $('#climber-1').css('top') + $('#climber-1').css('height') > $('.hazard').css('height')) {
-    //       alert('Collision!');
-    //     }
+   }
+
+   // Climber-2 Collision
+   if ($c2Place.x < $hazPlace.x + $hazPlace.width &&
+  $c2Place.x + $c2Place.width > $hazPlace.x &&
+  $c2Place.y < $hazPlace.y + $hazPlace.height &&
+  $c2Place.height + $c2Place.y > $hazPlace.y) {
+    alert('Game over!');
+  }
 
   });
 
