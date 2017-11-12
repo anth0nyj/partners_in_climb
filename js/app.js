@@ -2,7 +2,7 @@ $(() => {
 
   const $titleLine = $('<h1>').text('Partners in Climb');
   const $gameContainer = $('<div>').attr('id', 'game-container');
-  $('body').append($titleLine, $gameContainer)
+  $('body').append($titleLine, $gameContainer);
   const $leftPanel = $('<div>').attr('id', 'left-panel');
   const $rightPanel = $('<div>').attr('id', 'right-panel');
   $gameContainer.append($leftPanel, $rightPanel);
@@ -11,8 +11,8 @@ $(() => {
   $leftPanel.append($climber1);
   $rightPanel.append($climber2);
   // Positions climbers within panels
-  $climber1.css({'left': '140px', 'top': '390px'});
-  $climber2.css({'left': '440px', 'top': '390px'});
+  // $climber1.css({'left': '140px', 'top': '390px'});
+  // $climber2.css({'left': '440px', 'top': '390px'});
 
   // Climber Stats
 
@@ -77,21 +77,27 @@ $(() => {
     }
 
     // Logs the position of each climber on keydown.
-    console.log('Climber-1 Position: ', $('#climber-1').offset());
-    console.log('Climber-2 Position: ', $('#climber-2').offset());
+    // console.log('Climber-1 Position: ', $('#climber-1').offset());
+    // console.log('Climber-2 Position: ', $('#climber-2').offset());
 
 
+    console.log($('#climber-1').css('left'), $('#climber-1').css('top'));
     // Send alert when positions are the same
-    if ($('#climber-1').offset() == $('.hazard').offset()) {
-      alert('Collision!');
-    }
+    if ($('#climber-1').css('left') < $('.hazard').css('left') + $('.hazard').css('width') &&
+        $('#climber-1').css('left') + $('#climber-1').css('width') > $('.hazard').css('left') &&
+        $('#climber-1').css('top') < $('.hazard').css('top') + $('.hazard').css('height') &&
+        $('#climber-1').css('top') + $('#climber-1').css('height') > $('.hazard').css('height')) {
+          alert('Collision!');
+        }
 
   });
 
   // Creates hazard, inserts hazard to left panel
-  const $hazard = $('<div>').addClass('hazard');
-  $hazard.css({'height': '20px', 'width': '20px', 'background-color': 'black'});
-  $('#left-panel').append($hazard);
-
+  // while (true) {
+    const $hazard = $('<div>').addClass('hazard');
+    $hazard.css({'height': '20px', 'width': '20px', 'background-color': 'black'});
+    $('#left-panel').append($hazard);
+    // $hazard.animate({'top': $hazard.top+=2})
+  // }
 
 });

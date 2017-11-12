@@ -11,21 +11,30 @@ h1 {
 #game-container {
   border: 2px white solid;
   text-align: center;
+  display: flex;
 }
 
 #left-panel, #right-panel {
   width: 300px;
-  height: 800px;
+  height: 500px;
   background-color: white;
   display: inline-block;
   text-align: center;
   margin: 0 auto;
   border: 1px black solid;
+  display: flex;
+  flex-direction: row;
 }
 
 #climber-1, #climber-2 {
   width: 20px;
   height: 20px;
+  display: inline-block;
   background-color: red;
   position: relative;
+}
+
+.hazard {
+  /* Probably going to have to put the falling animation here? I don't really know. */
+  display: inline-block;
 }
