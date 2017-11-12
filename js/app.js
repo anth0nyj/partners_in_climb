@@ -16,12 +16,12 @@ $(() => {
 
   // Climber Stats
 
-  const $c1Left = $('#climber-1').css('left');
-  const $c1Top = $('#climber-1').css('top');
-  const $c2Left = $('#climber-2').css('left');
-  const $c2Top = $('#climber-2').css('left');
+  let c1Left = 0;
+  let c1Top = 0;
   let c1Delay = 0;
   let c1DstMvd = 10;
+  let c2Left = 0;
+  let c2Top = 0;
   let c2Delay = 0;
   let c2DstMvd = 10;
 
@@ -80,15 +80,26 @@ $(() => {
     // console.log('Climber-1 Position: ', $('#climber-1').offset());
     // console.log('Climber-2 Position: ', $('#climber-2').offset());
 
-
-    console.log($('#climber-1').css('left'), $('#climber-1').css('top'));
+    let $c1Place = $('#climber-1')[0].getBoundingClientRect();
+    let $c2Place = $('#climber-2')[0].getBoundingClientRect();
+    let $hazPlace = $('.hazard')[0].getBoundingClientRect();
+    console.log($c1Place);
+    console.log($hazPlace);
     // Collision Detection?
-    if ($('#climber-1').css('left') < $('.hazard').css('left') + $('.hazard').css('width') &&
-        $('#climber-1').css('left') + $('#climber-1').css('width') > $('.hazard').css('left') &&
-        $('#climber-1').css('top') < $('.hazard').css('top') + $('.hazard').css('height') &&
-        $('#climber-1').css('top') + $('#climber-1').css('height') > $('.hazard').css('height')) {
-          alert('Collision!');
-        }
+
+    if ($c1Place.x < $hazPlace.x + $hazPlace.width &&
+   $c1Place.x + $c1Place.width > $hazPlace.x &&
+   $c1Place.y < $hazPlace.y + $hazPlace.height &&
+   $c1Place.height + $c1Place.y > $hazPlace.y) {
+     alert('Game over!');
+    // collision detected!
+}
+    // if ($('#climber-1').css('left') < $('.hazard').css('left') + $('.hazard').css('width') &&
+    //     $('#climber-1').css('left') + $('#climber-1').css('width') > $('.hazard').css('left') &&
+    //     $('#climber-1').css('top') < $('.hazard').css('top') + $('.hazard').css('height') &&
+    //     $('#climber-1').css('top') + $('#climber-1').css('height') > $('.hazard').css('height')) {
+    //       alert('Collision!');
+    //     }
 
   });
 
