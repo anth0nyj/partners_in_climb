@@ -13,6 +13,8 @@ $(() => {
   // Positions climbers within panels
   // $climber1.css({'left': '140px', 'top': '390px'});
   // $climber2.css({'left': '440px', 'top': '390px'});
+  $('#climber-1').css({'margin': 'auto'});
+  $('#climber-2').css({'margin': 'auto'});
 
   // Climber Stats
 
