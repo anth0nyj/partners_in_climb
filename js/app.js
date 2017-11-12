@@ -16,12 +16,12 @@ $(() => {
 
   // Climber Stats
 
-  let c1Left = 0;
-  let c1Top = 0;
+  const $c1Left = $('#climber-1').css('left');
+  const $c1Top = $('#climber-1').css('top');
+  const $c2Left = $('#climber-2').css('left');
+  const $c2Top = $('#climber-2').css('left');
   let c1Delay = 0;
   let c1DstMvd = 10;
-  let c2Left = 0;
-  let c2Top = 0;
   let c2Delay = 0;
   let c2DstMvd = 10;
 
@@ -82,7 +82,7 @@ $(() => {
 
 
     console.log($('#climber-1').css('left'), $('#climber-1').css('top'));
-    // Send alert when positions are the same
+    // Collision Detection?
     if ($('#climber-1').css('left') < $('.hazard').css('left') + $('.hazard').css('width') &&
         $('#climber-1').css('left') + $('#climber-1').css('width') > $('.hazard').css('left') &&
         $('#climber-1').css('top') < $('.hazard').css('top') + $('.hazard').css('height') &&
