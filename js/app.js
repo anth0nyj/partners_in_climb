@@ -9,15 +9,18 @@ $(() => {
   const $rightPanel = $('<div>').attr('id', 'right-panel');
   $gameContainer.append($leftPanel, $rightPanel);
 
+
   // Score Box Creation
   const $scoreBox = $('<div>').attr('id', 'score-box');
   const $currentScoreBox = $('<div>').attr('id', 'current-score-box');
   const $highScoreBox = $('<div>').attr('id', 'high-score-box');
   let currentScore = 0;
-  $currentScoreBox.text("Score: 0");
-  $highScoreBox.text('High Score: 0');
+  $currentScoreBox.text("Score: " + currentScore);
+  let highScore = 0;
+  $highScoreBox.text('High Score: ' + highScore);
   $scoreBox.append($currentScoreBox, $highScoreBox);
   $gameContainer.after($scoreBox);
+
 
   // Player Object Creation
   const $climber1 = $('<div>').attr('id', 'climber-1');
@@ -27,12 +30,14 @@ $(() => {
   $('#climber-1').css({'margin': 'auto'});
   $('#climber-2').css({'margin': 'auto'});
 
+
   // Position Tracking
   let $c1Place = $('#climber-1')[0].getBoundingClientRect();
   let $c2Place = $('#climber-2')[0].getBoundingClientRect();
 
+
   // Creates hazard, inserts hazard to left panel
-  // while (true) {
+  // Note: create setInterval(?) that makes objects appear at increasing frequency.
   const $hazard = $('<div>').addClass('hazard');
   const $hazLeft = Math.floor(Math.random()*281)
   $hazard.css({'height': '20px', 'width': '20px', 'background-color': 'black', 'left': $hazLeft});
@@ -47,19 +52,23 @@ $(() => {
 
 
   // Collision Detection
-
   const colDetect = () => {
 
-  // Climber-1 Collision
   console.log('colDetect called');
   $hazPlace = $('.hazard')[0].getBoundingClientRect();
   console.log('hazPlace: ', $hazPlace);
   console.log('c1Place: ', $c1Place);
+  
+  // Climber-1 Collision
     if ($c1Place.x < $hazPlace.x + $hazPlace.width &&
    $c1Place.x + $c1Place.width > $hazPlace.x &&
    $c1Place.y < $hazPlace.y + $hazPlace.height &&
    $c1Place.height + $c1Place.y > $hazPlace.y) {
      alert('Game over!');
+     if (currentScore > highScore) {
+       highScore = currentScore;
+       $highScoreBox.text("High Score: " + highScore);
+     }
      currentScore = 0;
    }
 
@@ -69,12 +78,15 @@ $(() => {
   $c2Place.y < $hazPlace.y + $hazPlace.height &&
   $c2Place.height + $c2Place.y > $hazPlace.y) {
     alert('Game over!');
+    if (currentScore > highScore) {
+      highScore = currentScore;
+      $highScoreBox.text("High Score: " + highScore);
+    }
+    currentScore = 0;
   }
+
 }
 
-  // while (true) {
-  //   colDetect();
-  // }
 
   // Climber Stats
 
@@ -155,11 +167,12 @@ $(() => {
   // $(document).animationstart(colDetect());
 
   // }
-  const timer = setInterval(() => {
+  const scoreTracker = setInterval(() => {
     currentScore++;
-    console.log(currentScore);
     $currentScoreBox.text("Score: " + currentScore);
   }, 100);
+
+
 
 // Onload Closure
 });
