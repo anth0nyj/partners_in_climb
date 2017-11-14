@@ -112,7 +112,7 @@ $(() => {
     const $hazard = $('<div>').addClass('hazard');
     $hazard.css({'height': '20px', 'width': '20px', 'background-color': 'black'});
     $('#left-panel').append($hazard);
-    // $hazard.animate({'top': $hazard.top+=2})
+    $hazard.css({'animation-name': 'falling-hazard', 'animation-duration': '3s'});
   // }
 
 });

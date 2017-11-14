@@ -40,4 +40,15 @@ h1 {
   display: inline-block;
   z-index: 4;
   position: absolute;
+  animation-name: falling-hazard;
+  transition-timing-function: linear;
+}
+
+@keyframes falling-hazard {
+  from {
+    top: 0px;
+  }
+  to {
+    top: 500px;
+  }
 }
