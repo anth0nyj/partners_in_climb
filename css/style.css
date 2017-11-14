@@ -26,22 +26,48 @@ h1 {
   flex-direction: row;
 }
 
+#score-box {
+  color: white;
+  max-width: 48%;
+  height: 50px;
+  border: 1px white solid; margin: 0 auto;
+}
+
+#current-score-box {
+  color: white;
+  max-width: 48%;
+  max-height: 100%;
+  border: 1px white solid; margin: 0 auto;
+  display: flex;
+  flex-grow:
+}
+
+#high-score-box {
+  color: white;
+  max-width: 48%;
+  max-height: 100%;
+  border: 1px white solid; margin: 0 auto;
+  display: flex;
+}
+
 #climber-1, #climber-2 {
   width: 20px;
   height: 20px;
   display: inline-block;
   background-color: red;
   position: relative;
-  z-index: 999;
+  /*z-index: 999;*/
 }
 
 .hazard {
   /* Probably going to have to put the falling animation here? I don't really know. */
   display: inline-block;
-  z-index: 4;
+  /*z-index: 4;*/
   position: absolute;
   animation-name: falling-hazard;
   transition-timing-function: linear;
+  animation-iteration-count: infinite;
+  /*z-index: -5;*/
 }
 
 @keyframes falling-hazard {
@@ -49,6 +75,6 @@ h1 {
     top: 0px;
   }
   to {
-    top: 500px;
+    top: 1000px;
   }
 }

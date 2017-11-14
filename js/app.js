@@ -1,20 +1,80 @@
 $(() => {
 
+  // Game Board Creation
   const $titleLine = $('<h1>').text('Partners in Climb');
   const $gameContainer = $('<div>').attr('id', 'game-container');
   $('body').append($titleLine, $gameContainer);
   const $leftPanel = $('<div>').attr('id', 'left-panel');
+  const $leftPanelBounds = $leftPanel[0].getBoundingClientRect();
   const $rightPanel = $('<div>').attr('id', 'right-panel');
   $gameContainer.append($leftPanel, $rightPanel);
+
+  // Score Box Creation
+  const $scoreBox = $('<div>').attr('id', 'score-box');
+  const $currentScoreBox = $('<div>').attr('id', 'current-score-box');
+  const $highScoreBox = $('<div>').attr('id', 'high-score-box');
+  let currentScore = 0;
+  $currentScoreBox.text("Score: 0");
+  $highScoreBox.text('High Score: 0');
+  $scoreBox.append($currentScoreBox, $highScoreBox);
+  $gameContainer.after($scoreBox);
+
+  // Player Object Creation
   const $climber1 = $('<div>').attr('id', 'climber-1');
   const $climber2 = $('<div>').attr('id', 'climber-2');
   $leftPanel.append($climber1);
   $rightPanel.append($climber2);
-  // Positions climbers within panels
-  // $climber1.css({'left': '140px', 'top': '390px'});
-  // $climber2.css({'left': '440px', 'top': '390px'});
   $('#climber-1').css({'margin': 'auto'});
   $('#climber-2').css({'margin': 'auto'});
+
+  // Position Tracking
+  let $c1Place = $('#climber-1')[0].getBoundingClientRect();
+  let $c2Place = $('#climber-2')[0].getBoundingClientRect();
+
+  // Creates hazard, inserts hazard to left panel
+  // while (true) {
+  const $hazard = $('<div>').addClass('hazard');
+  const $hazLeft = Math.floor(Math.random()*281)
+  $hazard.css({'height': '20px', 'width': '20px', 'background-color': 'black', 'left': $hazLeft});
+  $('#left-panel').append($hazard);
+  let $hazPlace = $('.hazard')[0].getBoundingClientRect();
+  $hazard.css({'animation-name': 'falling-hazard', 'animation-duration': '4s'});
+
+
+  // Logging Positions
+  console.log($c1Place);
+  console.log($hazPlace);
+
+
+  // Collision Detection
+
+  const colDetect = () => {
+
+  // Climber-1 Collision
+  console.log('colDetect called');
+  $hazPlace = $('.hazard')[0].getBoundingClientRect();
+  console.log('hazPlace: ', $hazPlace);
+  console.log('c1Place: ', $c1Place);
+    if ($c1Place.x < $hazPlace.x + $hazPlace.width &&
+   $c1Place.x + $c1Place.width > $hazPlace.x &&
+   $c1Place.y < $hazPlace.y + $hazPlace.height &&
+   $c1Place.height + $c1Place.y > $hazPlace.y) {
+     alert('Game over!');
+     currentScore = 0;
+   }
+
+   // Climber-2 Collision
+   if ($c2Place.x < $hazPlace.x + $hazPlace.width &&
+  $c2Place.x + $c2Place.width > $hazPlace.x &&
+  $c2Place.y < $hazPlace.y + $hazPlace.height &&
+  $c2Place.height + $c2Place.y > $hazPlace.y) {
+    alert('Game over!');
+  }
+}
+
+  // while (true) {
+  //   colDetect();
+  // }
 
   // Climber Stats
 
@@ -40,7 +100,9 @@ $(() => {
       c1Top -= c1DstMvd;
     }
     // Bind D to Rightward Movement
-    if (event.keyCode == 68) {
+    if (event.keyCode == 68 && $leftPanelBounds.x) {
+      console.log('You can\'t go that way!');
+    } else if (event.keyCode == 68) {
       $('#climber-1').animate({'left': (c1Left + c1DstMvd) + 'px'}, c1Delay);
       c1Left += c1DstMvd;
     }
@@ -50,7 +112,9 @@ $(() => {
       c1Top += c1DstMvd;
     }
     // Bind A to Leftward Movement
-    if (event.keyCode == 65) {
+    if (event.keyCode == 65 && $leftPanelBounds.x >= $c1Place.x ) {
+      console.log('You can\'t go that way!');
+    } else if (event.keyCode == 65) {
       $('#climber-1').animate({'left': c1Left - c1DstMvd + 'px'}, c1Delay);
       c1Left -= c1DstMvd
     }
@@ -78,41 +142,24 @@ $(() => {
       c2Left -= c2DstMvd;
     }
 
-    // Collision Detection
+    $c1Place = $('#climber-1')[0].getBoundingClientRect();
+    $c2Place = $('#climber-2')[0].getBoundingClientRect();
 
-    // Position Tracking
-    let $c1Place = $('#climber-1')[0].getBoundingClientRect();
-    let $c2Place = $('#climber-2')[0].getBoundingClientRect();
-    let $hazPlace = $('.hazard')[0].getBoundingClientRect();
-
-    // Logging Positions
     console.log($c1Place);
-    console.log($hazPlace);
 
-    // Climber-1 Collision
-    if ($c1Place.x < $hazPlace.x + $hazPlace.width &&
-   $c1Place.x + $c1Place.width > $hazPlace.x &&
-   $c1Place.y < $hazPlace.y + $hazPlace.height &&
-   $c1Place.height + $c1Place.y > $hazPlace.y) {
-     alert('Game over!');
-   }
+    colDetect();
 
-   // Climber-2 Collision
-   if ($c2Place.x < $hazPlace.x + $hazPlace.width &&
-  $c2Place.x + $c2Place.width > $hazPlace.x &&
-  $c2Place.y < $hazPlace.y + $hazPlace.height &&
-  $c2Place.height + $c2Place.y > $hazPlace.y) {
-    alert('Game over!');
-  }
-
+  // Keydown Closure
   });
 
-  // Creates hazard, inserts hazard to left panel
-  // while (true) {
-    const $hazard = $('<div>').addClass('hazard');
-    $hazard.css({'height': '20px', 'width': '20px', 'background-color': 'black'});
-    $('#left-panel').append($hazard);
-    $hazard.css({'animation-name': 'falling-hazard', 'animation-duration': '3s'});
-  // }
+  // $(document).animationstart(colDetect());
 
+  // }
+  const timer = setInterval(() => {
+    currentScore++;
+    console.log(currentScore);
+    $currentScoreBox.text("Score: " + currentScore);
+  }, 100);
+
+// Onload Closure
 });
