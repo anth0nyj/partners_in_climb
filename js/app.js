@@ -179,7 +179,9 @@ createHazard();
       c2Top += c2DstMvd;
     }
     // Bind J to Leftward Movement
-    if (event.keyCode == 74) {
+    if (event.keyCode == 74 && $c2Place.x <= $('#right-panel')[0].getBoundingClientRect().x + 20) {
+      console.log('You can\'t go that way!');
+    } else if (event.keyCode == 74) {
       $('#climber-2').animate({'left': c2Left - c2DstMvd + 'px', c2Delay});
       c2Left -= c2DstMvd;
     }
