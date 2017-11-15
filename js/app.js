@@ -39,15 +39,15 @@ $(() => {
 
 
   // Hazard Creation
-  const createHazard = () => {
+  const createHazard = (panel) => {
     // Creates object
     const $hazard = $('<div>').addClass('hazard');
     // Randomly determines and sets starting X coordinate.
-    const $hazLeft = Math.floor(Math.random()*281) + $('#left-panel')[0].getBoundingClientRect().x;
+    const $hazLeft = Math.floor(Math.random()*281) + panel[0].getBoundingClientRect().x;
     $hazard.css({'left': $hazLeft});
     // Inserts object in left panel.
     // Note: this will probably require passing an argument to determine which panel is selected for hazard creation, or something of the sort.
-    $('#left-panel').append($hazard);
+    panel.append($hazard);
     // Gets coordinates of object boundaries.
     let $hazPlace = $('.hazard')[0].getBoundingClientRect();
     // Makes object descend across screen.
@@ -56,7 +56,8 @@ $(() => {
 
 }
 
-createHazard();
+createHazard($('#left-panel'));
+createHazard($('#right-panel'));
 
   // Position Tracking
   let $c1Place = $('#climber-1')[0].getBoundingClientRect();
@@ -206,15 +207,25 @@ createHazard();
   // $(document).animationstart(colDetect());
 
   // }
+
+
   const scoreTracker = setInterval(() => {
     currentScore++;
     $currentScoreBox.text("Score: " + currentScore);
+  }, 100);
+
+  let progBitIndex = 0;
+  const progTracker = setInterval(() => {
     const $progBit = $('<div>').addClass('prog-bit');
     $progBar.append($progBit);
-    if ($('.prog-bit')[0].getBoundingClientRect().y + $('.prog-bit')[0].getBoundingClientRect().height >= $('#prog-bar')[0].getBoundingClientRect().y + $('#prog-bar')[0].getBoundingClientRect().height) {
+    let progBitBtmBnd = ($('.prog-bit')[progBitIndex].getBoundingClientRect().y + $('.prog-bit')[progBitIndex].getBoundingClientRect().height);
+    let progBarBtmBnd = ($('#prog-bar')[0].getBoundingClientRect().y + $('#prog-bar')[0].getBoundingClientRect().height);
+    progBitIndex++;
+    if (progBitBtmBnd >= progBarBtmBnd) {
       alert('You win!');
+      $progBar.empty();
     }
-  }, 10);
+  }, 1000);
 
 // Onload Closure
 });

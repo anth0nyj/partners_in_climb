@@ -1,10 +1,5 @@
 Current Objectives:
 
-1. Stop prog-bits from generating past end of prog-bar.
-2. Create win scenario (high score?).
-3. Fix bug that stops CD when player object is stationary.
-4. Generate hazard objects on right panel.
-5. Make hazard objects appear at top of panel, and disappear at bottom of panel.
-6. Move currentScoreBox to left, and highScoreBox to right of scoreBox.
-7. Slowly increase the rate at which hazard objects appear.
-=> Very low priority.
+1. Fix bug that stops CD when player object is stationary.
+2. Make hazard objects appear at top of panel, and disappear at bottom of panel.
+3. Move currentScoreBox to left, and highScoreBox to right of scoreBox.
