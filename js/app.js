@@ -132,7 +132,9 @@ createHazard();
       c1Left += c1DstMvd;
     }
     // Bind S to Downward Movement
-    if (event.keyCode == 83) {
+    if (event.keyCode == 83 && $c1Place.y >= $('#left-panel')[0].getBoundingClientRect().y + $('#left-panel')[0].getBoundingClientRect().height - 30) {
+      console.log('You can\'t go that way!');
+    } else if (event.keyCode == 83) {
       $('#climber-1').animate({'top': c1Top + c1DstMvd + 'px'}, c1Delay);
       c1Top += c1DstMvd;
     }
