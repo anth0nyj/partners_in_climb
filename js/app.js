@@ -201,7 +201,12 @@ createHazard();
   const scoreTracker = setInterval(() => {
     currentScore++;
     $currentScoreBox.text("Score: " + currentScore);
-  }, 100);
+    const $progBit = $('<div>').addClass('prog-bit');
+    $progBar.append($progBit);
+    if ($('.prog-bit')[0].getBoundingClientRect().y + $('.prog-bit')[0].getBoundingClientRect().height >= $('#prog-bar')[0].getBoundingClientRect().y + $('#prog-bar')[0].getBoundingClientRect().height) {
+      alert('You win!');
+    }
+  }, 10);
 
 // Onload Closure
 });
