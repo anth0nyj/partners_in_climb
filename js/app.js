@@ -125,7 +125,7 @@ createHazard();
       c1Top -= c1DstMvd;
     }
     // Bind D to Rightward Movement
-    if (event.keyCode == 68 && $leftPanelBounds.x) {
+    if (event.keyCode == 68 && $c1Place.x >= $('#left-panel')[0].getBoundingClientRect().x + $('#left-panel')[0].getBoundingClientRect().width - 30) {
       console.log('You can\'t go that way!');
     } else if (event.keyCode == 68) {
       $('#climber-1').animate({'left': (c1Left + c1DstMvd) + 'px'}, c1Delay);
