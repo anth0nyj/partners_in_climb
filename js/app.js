@@ -5,7 +5,6 @@ $(() => {
   const $gameContainer = $('<div>').attr('id', 'game-container');
   $('body').append($titleLine, $gameContainer);
   const $leftPanel = $('<div>').attr('id', 'left-panel');
-  // const $leftPanelBounds = $leftPanel[0].getBoundingClientRect();
   const $progBar = $('<div>').attr('id', 'prog-bar');
   const $rightPanel = $('<div>').attr('id', 'right-panel');
   $gameContainer.append($leftPanel, $progBar, $rightPanel);
@@ -22,10 +21,6 @@ $(() => {
   $scoreBox.append($currentScoreBox, $highScoreBox);
   $gameContainer.after($scoreBox);
 
-  // Progress Bar
-  // const $progBar = $('<div>').attr('id', 'prog-bar');
-  // $('#game-container').append($progBar);
-  // $progBar.css({'left': $('#game-container')[0].getBoundingClientRect().x + $('#game-container')[0].getBoundingClientRect().width + 10 + 'px'})
 
   // Player Object Creation
   const $climber1 = $('<div>').attr('id', 'climber-1');
@@ -45,18 +40,19 @@ $(() => {
     // Randomly determines and sets starting X coordinate.
     const $hazLeft = Math.floor(Math.random()*281) + panel[0].getBoundingClientRect().x;
     $hazard.css({'left': $hazLeft});
-    // Inserts object in left panel.
-    // Note: this will probably require passing an argument to determine which panel is selected for hazard creation, or something of the sort.
+    // Inserts object in selected panel.
     panel.append($hazard);
     // Gets coordinates of object boundaries.
     let $hazPlace = $('.hazard')[0].getBoundingClientRect();
     // Makes object descend across screen.
-    // Note: at some point, the animation duration should take a passed argument, a function, something to modify the rate of descent. This will be employed as a means of increasing game difficulty.
     $hazard.css({'animation-name': 'falling-hazard', 'animation-duration': '4s'});
-
 }
 
 createHazard($('#left-panel'));
+createHazard($('#left-panel'));
+createHazard($('#left-panel'));
+createHazard($('#right-panel'));
+createHazard($('#right-panel'));
 createHazard($('#right-panel'));
 
   // Position Tracking
@@ -73,10 +69,7 @@ createHazard($('#right-panel'));
   // Collision Detection
   const colDetect = () => {
 
-  // console.log('colDetect called');
   $hazPlace = $('.hazard')[0].getBoundingClientRect();
-  // console.log('hazPlace: ', $hazPlace);
-  // console.log('c1Place: ', $c1Place);
 
   // Climber-1 Collision
     if ($c1Place.x < $hazPlace.x + $hazPlace.width &&
@@ -189,15 +182,6 @@ createHazard($('#right-panel'));
 
     $c1Place = $('#climber-1')[0].getBoundingClientRect();
     $c2Place = $('#climber-2')[0].getBoundingClientRect();
-
-
-    // console.log('Left panel left boundary: ' + $('#left-panel')[0].getBoundingClientRect().x);
-    // console.log('Left panel right boundary: ' + ($('#left-panel')[0].getBoundingClientRect().x + $('#left-panel').css('width')));
-
-    console.log("$c1Place: ");
-    console.log($c1Place);
-    console.log("$hazPlace: ");
-    console.log($hazPlace);
 
     colDetect();
 
