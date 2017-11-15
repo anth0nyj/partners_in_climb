@@ -111,11 +111,11 @@ createHazard();
   let c1Left = 0;
   let c1Top = ($('#left-panel')[0].getBoundingClientRect().height/2)-10;
   let c1Delay = 0;
-  let c1DstMvd = 10;
+  let c1DstMvd = 20;
   let c2Left = 0;
   let c2Top = ($('#right-panel')[0].getBoundingClientRect().height/2)-10;
   let c2Delay = 0;
-  let c2DstMvd = 10;
+  let c2DstMvd = 20;
 
   // Movement for both climbers
   // Note: Climber 2 has a delay on its movement.
@@ -161,28 +161,28 @@ createHazard();
     if (event.keyCode == 73 && $c2Place.y <= $('#right-panel')[0].getBoundingClientRect().y + 20) {
       console.log('You can\'t go that way!');
     } else if (event.keyCode == 73) {
-      $('#climber-2').animate({'top': (c2Top - c2DstMvd) + 'px', c2Delay});
+      $('#climber-2').animate({'top': (c2Top - c2DstMvd) + 'px', }, c2Delay);
       c2Top -= c2DstMvd;
     }
     // Bind L to Rightward Movement
     if (event.keyCode == 76 && $c2Place.x >= $('#right-panel')[0].getBoundingClientRect().x + $('#right-panel')[0].getBoundingClientRect().width - 40) {
       console.log('You can\'t go that way!');
     } else if (event.keyCode == 76) {
-      $('#climber-2').animate({'left': c2Left + c2DstMvd + 'px', c2Delay});
+      $('#climber-2').animate({'left': c2Left + c2DstMvd + 'px', }, c2Delay);
       c2Left += c2DstMvd;
     }
     // Bind K to Downward Movement
     if (event.keyCode == 75 && $c2Place.y >= $('#right-panel')[0].getBoundingClientRect().y + $('#right-panel')[0].getBoundingClientRect().height - 30) {
       console.log('You can\'t go that way!');
     } else if (event.keyCode == 75) {
-      $('#climber-2').animate({'top': c2Top + c2DstMvd + 'px', c2Delay});
+      $('#climber-2').animate({'top': c2Top + c2DstMvd + 'px', }, c2Delay);
       c2Top += c2DstMvd;
     }
     // Bind J to Leftward Movement
     if (event.keyCode == 74 && $c2Place.x <= $('#right-panel')[0].getBoundingClientRect().x + 20) {
       console.log('You can\'t go that way!');
     } else if (event.keyCode == 74) {
-      $('#climber-2').animate({'left': c2Left - c2DstMvd + 'px', c2Delay});
+      $('#climber-2').animate({'left': c2Left - c2DstMvd + 'px', }, c2Delay);
       c2Left -= c2DstMvd;
     }
 

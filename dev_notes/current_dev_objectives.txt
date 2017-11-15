@@ -1,16 +1,10 @@
 Current Objectives:
 
-1. Get player objects to spawn in middle of panels, again.
-=> Done.
-2. Slowly increase the rate at which hazard objects appear.
+1. Stop prog-bits from generating past end of prog-bar.
+2. Create win scenario (high score?).
+3. Fix bug that stops CD when player object is stationary.
+4. Generate hazard objects on right panel.
+5. Make hazard objects appear at top of panel, and disappear at bottom of panel.
+6. Move currentScoreBox to left, and highScoreBox to right of scoreBox.
+7. Slowly increase the rate at which hazard objects appear.
 => Very low priority.
-3. Create progress bar on top, bottom or side of game panels.
-=> Created, needs functionality.
-=> Has functionality, needs to stop having functionality at win scenario.
-4. Create win scenario (high score?).
-5. Fix bug that stops CD when player object is stationary.
-6. Fix slow movement on right player object.
-7. Restrict right player object from leaving screen.
-8. Generate hazard objects on right panel.
-9. Make hazard objects appear at top of panel, and disappear at bottom of panel.
-10. Move currentScoreBox to left, and highScoreBox to right of scoreBox.

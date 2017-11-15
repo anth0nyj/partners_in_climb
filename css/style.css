@@ -25,6 +25,7 @@ h1 {
   border: 1px black solid;
   /*display: flex;
   flex-direction: row;*/
+  animation-delay: 0;
 }
 
 #prog-bar {
