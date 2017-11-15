@@ -27,6 +27,14 @@ h1 {
   flex-direction: row;*/
 }
 
+#prog-bar {
+  display: inline-block;
+  width: 20px;
+  height: 500px;
+  background-color: navy;
+  vertical-align: bottom;
+}
+
 #score-box {
   color: white;
   max-width: 48%;

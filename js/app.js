@@ -5,9 +5,10 @@ $(() => {
   const $gameContainer = $('<div>').attr('id', 'game-container');
   $('body').append($titleLine, $gameContainer);
   const $leftPanel = $('<div>').attr('id', 'left-panel');
-  const $leftPanelBounds = $leftPanel[0].getBoundingClientRect();
+  // const $leftPanelBounds = $leftPanel[0].getBoundingClientRect();
+  const $progBar = $('<div>').attr('id', 'prog-bar');
   const $rightPanel = $('<div>').attr('id', 'right-panel');
-  $gameContainer.append($leftPanel, $rightPanel);
+  $gameContainer.append($leftPanel, $progBar, $rightPanel);
 
 
   // Score Box Creation
@@ -21,10 +22,16 @@ $(() => {
   $scoreBox.append($currentScoreBox, $highScoreBox);
   $gameContainer.after($scoreBox);
 
+  // Progress Bar
+  // const $progBar = $('<div>').attr('id', 'prog-bar');
+  // $('#game-container').append($progBar);
+  // $progBar.css({'left': $('#game-container')[0].getBoundingClientRect().x + $('#game-container')[0].getBoundingClientRect().width + 10 + 'px'})
 
   // Player Object Creation
   const $climber1 = $('<div>').attr('id', 'climber-1');
   const $climber2 = $('<div>').attr('id', 'climber-2');
+  $climber1.css({'top': ($('#left-panel')[0].getBoundingClientRect().height/2)-10});
+  $climber2.css({'top': ($('#right-panel')[0].getBoundingClientRect().height/2)-10});
   $leftPanel.append($climber1);
   $rightPanel.append($climber2);
   $('#climber-1').css({'margin': 'auto'});
@@ -102,11 +109,11 @@ createHazard();
   // Climber Stats
 
   let c1Left = 0;
-  let c1Top = 0;
+  let c1Top = ($('#left-panel')[0].getBoundingClientRect().height/2)-10;
   let c1Delay = 0;
   let c1DstMvd = 10;
   let c2Left = 0;
-  let c2Top = 0;
+  let c2Top = ($('#right-panel')[0].getBoundingClientRect().height/2)-10;
   let c2Delay = 0;
   let c2DstMvd = 10;
 
@@ -132,7 +139,7 @@ createHazard();
       c1Left += c1DstMvd;
     }
     // Bind S to Downward Movement
-    if (event.keyCode == 83 && $c1Place.y >= $('#left-panel')[0].getBoundingClientRect().y + $('#left-panel')[0].getBoundingClientRect().height - 30) {
+    if (event.keyCode == 83 && $c1Place.y >= $('#left-panel')[0].getBoundingClientRect().y + $('#left-panel')[0].getBoundingClientRect().height - 20) {
       console.log('You can\'t go that way!');
     } else if (event.keyCode == 83) {
       $('#climber-1').animate({'top': c1Top + c1DstMvd + 'px'}, c1Delay);
@@ -175,8 +182,8 @@ createHazard();
     $c2Place = $('#climber-2')[0].getBoundingClientRect();
 
 
-    console.log('Left panel left boundary: ' + $('#left-panel')[0].getBoundingClientRect().x);
-    console.log('Left panel right boundary: ' + ($('#left-panel')[0].getBoundingClientRect().x + $('#left-panel').css('width')));
+    // console.log('Left panel left boundary: ' + $('#left-panel')[0].getBoundingClientRect().x);
+    // console.log('Left panel right boundary: ' + ($('#left-panel')[0].getBoundingClientRect().x + $('#left-panel').css('width')));
 
     console.log("$c1Place: ");
     console.log($c1Place);
@@ -195,8 +202,6 @@ createHazard();
     currentScore++;
     $currentScoreBox.text("Score: " + currentScore);
   }, 100);
-
-  // if (currentScore = )
 
 // Onload Closure
 });
