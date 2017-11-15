@@ -31,7 +31,7 @@ h1 {
   display: inline-block;
   width: 20px;
   height: 500px;
-  background-color: navy;
+  background-color: blue;
   vertical-align: bottom;
   padding: 0;
   margin: 0;
@@ -43,7 +43,7 @@ h1 {
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap-reverse;
-  background-color: green;
+  background-color: black;
   /*vertical-align: bottom;*/
   padding: 0;
   margin: 0;

@@ -158,7 +158,9 @@ createHazard();
     // Climber-2 Movement
     // Note: Climber-2 moves slowly and slides for some reason. Investigage.
     // Bind I to Upward Movement
-    if (event.keyCode == 73) {
+    if (event.keyCode == 73 && $c2Place.y <= $('#right-panel')[0].getBoundingClientRect().y + 20) {
+      console.log('You can\'t go that way!');
+    } else if (event.keyCode == 73) {
       $('#climber-2').animate({'top': (c2Top - c2DstMvd) + 'px', c2Delay});
       c2Top -= c2DstMvd;
     }

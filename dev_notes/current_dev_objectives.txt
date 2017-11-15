@@ -3,8 +3,10 @@ Current Objectives:
 1. Get player objects to spawn in middle of panels, again.
 => Done.
 2. Slowly increase the rate at which hazard objects appear.
+=> Very low priority.
 3. Create progress bar on top, bottom or side of game panels.
 => Created, needs functionality.
+=> Has functionality, needs to stop having functionality at win scenario.
 4. Create win scenario (high score?).
 5. Fix bug that stops CD when player object is stationary.
 6. Fix slow movement on right player object.
