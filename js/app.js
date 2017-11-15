@@ -118,7 +118,9 @@ createHazard();
     // Climber-1 Movement
 
     // Bind W to Upward Movement
-    if (event.keyCode == 87) {
+    if (event.keyCode == 87 && $c1Place.y <= $('#left-panel')[0].getBoundingClientRect().y + 10) {
+      console.log('You can\'t go that way!');
+    } else if (event.keyCode == 87) {
       $('#climber-1').animate({'top': (c1Top - c1DstMvd) + 'px'}, c1Delay);
       c1Top -= c1DstMvd;
     }
