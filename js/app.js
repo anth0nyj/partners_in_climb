@@ -172,7 +172,9 @@ createHazard();
       c2Left += c2DstMvd;
     }
     // Bind K to Downward Movement
-    if (event.keyCode == 75) {
+    if (event.keyCode == 75 && $c2Place.y >= $('#right-panel')[0].getBoundingClientRect().y + $('#right-panel')[0].getBoundingClientRect().height - 30) {
+      console.log('You can\'t go that way!');
+    } else if (event.keyCode == 75) {
       $('#climber-2').animate({'top': c2Top + c2DstMvd + 'px', c2Delay});
       c2Top += c2DstMvd;
     }
