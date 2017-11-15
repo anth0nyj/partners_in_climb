@@ -31,19 +31,30 @@ $(() => {
   $('#climber-2').css({'margin': 'auto'});
 
 
+  // Hazard Creation
+  const createHazard = () => {
+    // Creates object
+    const $hazard = $('<div>').addClass('hazard');
+    // Randomly determines and sets starting X coordinate.
+    const $hazLeft = Math.floor(Math.random()*281) + $('#left-panel')[0].getBoundingClientRect().x;
+    $hazard.css({'left': $hazLeft});
+    // Inserts object in left panel.
+    // Note: this will probably require passing an argument to determine which panel is selected for hazard creation, or something of the sort.
+    $('#left-panel').append($hazard);
+    // Gets coordinates of object boundaries.
+    let $hazPlace = $('.hazard')[0].getBoundingClientRect();
+    // Makes object descend across screen.
+    // Note: at some point, the animation duration should take a passed argument, a function, something to modify the rate of descent. This will be employed as a means of increasing game difficulty.
+    $hazard.css({'animation-name': 'falling-hazard', 'animation-duration': '4s'});
+
+}
+
+createHazard();
+
   // Position Tracking
   let $c1Place = $('#climber-1')[0].getBoundingClientRect();
   let $c2Place = $('#climber-2')[0].getBoundingClientRect();
-
-
-  // Creates hazard, inserts hazard to left panel
-  // Note: create setInterval(?) that makes objects appear at increasing frequency.
-  const $hazard = $('<div>').addClass('hazard');
-  const $hazLeft = Math.floor(Math.random()*281)
-  $hazard.css({'height': '20px', 'width': '20px', 'background-color': 'black', 'left': $hazLeft});
-  $('#left-panel').append($hazard);
-  let $hazPlace = $('.hazard')[0].getBoundingClientRect();
-  $hazard.css({'animation-name': 'falling-hazard', 'animation-duration': '4s'});
+  $hazPlace = $('.hazard')[0].getBoundingClientRect();
 
 
   // Logging Positions
@@ -54,11 +65,11 @@ $(() => {
   // Collision Detection
   const colDetect = () => {
 
-  console.log('colDetect called');
+  // console.log('colDetect called');
   $hazPlace = $('.hazard')[0].getBoundingClientRect();
-  console.log('hazPlace: ', $hazPlace);
-  console.log('c1Place: ', $c1Place);
-  
+  // console.log('hazPlace: ', $hazPlace);
+  // console.log('c1Place: ', $c1Place);
+
   // Climber-1 Collision
     if ($c1Place.x < $hazPlace.x + $hazPlace.width &&
    $c1Place.x + $c1Place.width > $hazPlace.x &&
@@ -100,7 +111,7 @@ $(() => {
   let c2DstMvd = 10;
 
   // Movement for both climbers
-  // For some reason, Climber 2 has has a delay on its movement.
+  // Note: Climber 2 has a delay on its movement.
 
   $(document).keydown(function(event){
 
@@ -124,9 +135,11 @@ $(() => {
       c1Top += c1DstMvd;
     }
     // Bind A to Leftward Movement
-    if (event.keyCode == 65 && $leftPanelBounds.x >= $c1Place.x ) {
+    if (event.keyCode == 65 && $c1Place.x <= $('#left-panel')[0].getBoundingClientRect().x + 10) {
       console.log('You can\'t go that way!');
-    } else if (event.keyCode == 65) {
+  }  else if (event.keyCode == 65) {
+      // console.log('C1 Left: ' + $c1Place.x);
+      // console.log('Left Panel Left Boundary: ' + $leftPanelBounds.x);
       $('#climber-1').animate({'left': c1Left - c1DstMvd + 'px'}, c1Delay);
       c1Left -= c1DstMvd
     }
@@ -157,7 +170,14 @@ $(() => {
     $c1Place = $('#climber-1')[0].getBoundingClientRect();
     $c2Place = $('#climber-2')[0].getBoundingClientRect();
 
+
+    console.log('Left panel left boundary: ' + $('#left-panel')[0].getBoundingClientRect().x);
+    console.log('Left panel right boundary: ' + ($('#left-panel')[0].getBoundingClientRect().x + $('#left-panel').css('width')));
+
+    console.log("$c1Place: ");
     console.log($c1Place);
+    console.log("$hazPlace: ");
+    console.log($hazPlace);
 
     colDetect();
 
@@ -172,7 +192,7 @@ $(() => {
     $currentScoreBox.text("Score: " + currentScore);
   }, 100);
 
-
+  // if (currentScore = )
 
 // Onload Closure
 });
