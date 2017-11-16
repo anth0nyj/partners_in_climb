@@ -5,11 +5,10 @@ $(() => {
   const $gameContainer = $('<div>').attr('id', 'game-container');
   $('body').append($titleLine, $gameContainer);
   const $leftPanel = $('<div>').attr('id', 'left-panel');
+  // Progress Bar
   const $progBar = $('<div>').attr('id', 'prog-bar');
   const $rightPanel = $('<div>').attr('id', 'right-panel');
   $gameContainer.append($leftPanel, $progBar, $rightPanel);
-
-
   // Score Box Creation
   const $scoreBox = $('<div>').attr('id', 'score-box');
   const $currentScoreBox = $('<div>').attr('id', 'current-score-box');
@@ -111,35 +110,46 @@ createHazard($('#right-panel'));
 
   $(document).keydown(function(event){
 
+    $c1Place = $('#climber-1')[0].getBoundingClientRect();
+    $c2Place = $('#climber-2')[0].getBoundingClientRect();
+
     // Climber-1 Movement
 
     // Bind W to Upward Movement
     if (event.keyCode == 87 && $c1Place.y <= $('#left-panel')[0].getBoundingClientRect().y + 10) {
       console.log('You can\'t go that way!');
+      colDetect();
     } else if (event.keyCode == 87) {
       $('#climber-1').animate({'top': (c1Top - c1DstMvd) + 'px'}, c1Delay);
       c1Top -= c1DstMvd;
+      colDetect();
     }
     // Bind D to Rightward Movement
     if (event.keyCode == 68 && $c1Place.x >= $('#left-panel')[0].getBoundingClientRect().x + $('#left-panel')[0].getBoundingClientRect().width - 30) {
       console.log('You can\'t go that way!');
+      colDetect();
     } else if (event.keyCode == 68) {
       $('#climber-1').animate({'left': (c1Left + c1DstMvd) + 'px'}, c1Delay);
       c1Left += c1DstMvd;
+      colDetect();
     }
     // Bind S to Downward Movement
     if (event.keyCode == 83 && $c1Place.y >= $('#left-panel')[0].getBoundingClientRect().y + $('#left-panel')[0].getBoundingClientRect().height - 20) {
       console.log('You can\'t go that way!');
+      colDetect();
     } else if (event.keyCode == 83) {
       $('#climber-1').animate({'top': c1Top + c1DstMvd + 'px'}, c1Delay);
       c1Top += c1DstMvd;
+      colDetect();
     }
     // Bind A to Leftward Movement
     if (event.keyCode == 65 && $c1Place.x <= $('#left-panel')[0].getBoundingClientRect().x + 10) {
       console.log('You can\'t go that way!');
+      colDetect();
   }  else if (event.keyCode == 65) {;
       $('#climber-1').animate({'left': c1Left - c1DstMvd + 'px'}, c1Delay);
       c1Left -= c1DstMvd
+      colDetect();
     }
 
     // Climber-2 Movement
@@ -147,36 +157,42 @@ createHazard($('#right-panel'));
     // Bind I to Upward Movement
     if (event.keyCode == 73 && $c2Place.y <= $('#right-panel')[0].getBoundingClientRect().y + 20) {
       console.log('You can\'t go that way!');
+      colDetect();
     } else if (event.keyCode == 73) {
       $('#climber-2').animate({'top': (c2Top - c2DstMvd) + 'px', }, c2Delay);
       c2Top -= c2DstMvd;
+      colDetect();
     }
     // Bind L to Rightward Movement
     if (event.keyCode == 76 && $c2Place.x >= $('#right-panel')[0].getBoundingClientRect().x + $('#right-panel')[0].getBoundingClientRect().width - 40) {
       console.log('You can\'t go that way!');
+      colDetect();
     } else if (event.keyCode == 76) {
       $('#climber-2').animate({'left': c2Left + c2DstMvd + 'px', }, c2Delay);
       c2Left += c2DstMvd;
+      colDetect();
     }
     // Bind K to Downward Movement
     if (event.keyCode == 75 && $c2Place.y >= $('#right-panel')[0].getBoundingClientRect().y + $('#right-panel')[0].getBoundingClientRect().height - 30) {
       console.log('You can\'t go that way!');
+      colDetect();
     } else if (event.keyCode == 75) {
       $('#climber-2').animate({'top': c2Top + c2DstMvd + 'px', }, c2Delay);
       c2Top += c2DstMvd;
+      colDetect();
     }
     // Bind J to Leftward Movement
     if (event.keyCode == 74 && $c2Place.x <= $('#right-panel')[0].getBoundingClientRect().x + 20) {
       console.log('You can\'t go that way!');
+      colDetect();
     } else if (event.keyCode == 74) {
       $('#climber-2').animate({'left': c2Left - c2DstMvd + 'px', }, c2Delay);
       c2Left -= c2DstMvd;
+      colDetect();
     }
 
     $c1Place = $('#climber-1')[0].getBoundingClientRect();
     $c2Place = $('#climber-2')[0].getBoundingClientRect();
-
-    colDetect();
 
   // Keydown Closure
   });
