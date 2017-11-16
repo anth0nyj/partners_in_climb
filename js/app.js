@@ -61,11 +61,6 @@ createHazard($('#right-panel'));
   $hazPlace = $('.hazard')[0].getBoundingClientRect();
 
 
-  // Logging Positions
-  console.log($c1Place);
-  console.log($hazPlace);
-
-
   // Collision Detection
   const colDetect = () => {
 
