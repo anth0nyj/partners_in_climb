@@ -186,11 +186,6 @@ createHazard($('#right-panel'));
   // Keydown Closure
   });
 
-  // $(document).animationstart(colDetect());
-
-  // }
-
-
   const scoreTracker = setInterval(() => {
     currentScore++;
     $currentScoreBox.text("Score: " + currentScore);
