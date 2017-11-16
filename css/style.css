@@ -58,22 +58,24 @@ h1 {
   z-index: 10;
 }
 
-#current-score-box {
+#current-score-box, #high-score-box {
   color: white;
-  max-width: 48%;
-  max-height: 100%;
+  width: 50%;
+  height: 100%;
   border: 1px white solid;
   margin: 0 auto;
   display: flex;
-  flex-grow:
+  box-sizing: border-box;
+  z-index: 10;
+  font-size: 24px;
+}
+
+#current-score-box {
+  float: left;
 }
 
 #high-score-box {
-  color: white;
-  max-width: 48%;
-  max-height: 100%;
-  border: 1px white solid; margin: 0 auto;
-  display: flex;
+  float: right;
 }
 
 #climber-1, #climber-2 {

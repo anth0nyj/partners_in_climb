@@ -142,9 +142,7 @@ createHazard($('#right-panel'));
     // Bind A to Leftward Movement
     if (event.keyCode == 65 && $c1Place.x <= $('#left-panel')[0].getBoundingClientRect().x + 10) {
       console.log('You can\'t go that way!');
-  }  else if (event.keyCode == 65) {
-      // console.log('C1 Left: ' + $c1Place.x);
-      // console.log('Left Panel Left Boundary: ' + $leftPanelBounds.x);
+  }  else if (event.keyCode == 65) {;
       $('#climber-1').animate({'left': c1Left - c1DstMvd + 'px'}, c1Delay);
       c1Left -= c1DstMvd
     }
