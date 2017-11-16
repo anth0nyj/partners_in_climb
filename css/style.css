@@ -102,8 +102,10 @@ h1 {
 @keyframes falling-hazard {
   from {
     top: 0px;
+    animation-timing-function: linear;
   }
   to {
-    top: 600px;
+    top: 800px;
+    animation-timing-function: linear;
   }
 }
